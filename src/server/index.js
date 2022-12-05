@@ -8,15 +8,19 @@ const cors = require('cors');
 const app = express();
 console.log(__dirname);
 /* Middleware*/
-//Here we are configuring express to use body-parser as middle-ware
+//Here we are configuring express as middle-ware
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 // Cors for cross origin allowance
 app.use(cors());
 // Initialize the main project folder
-app.use(express.static('./src/client/view'));
+app.use(express.static('dist'));
 // Setup Server
 const PORT = 8081;
 app.listen(8081, () => {
   console.log(`listening on port: ${PORT}`);
+});
+
+app.get('/', (req, res) => {
+  res.sendFile('dist/index.html');
 });
