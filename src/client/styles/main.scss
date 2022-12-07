@@ -1,4 +1,23 @@
-h1 {
-  color: crimson;
-  font-size: 3rem;
+.main-container {
+  height: 100vh;
+}
+
+.image-wrapper {
+  min-height: 560px;
+  position: relative;
+}
+
+.hero-background {
+  background-image: url("../images/pexels-tobias-bjørkli-2104152.jpg");
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  width: 100%;
+  margin: 0 auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: hsl(193, 66%, 37%);
 }
