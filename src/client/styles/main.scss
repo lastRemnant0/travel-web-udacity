@@ -1,14 +1,26 @@
 .main-container {
-  height: 100vh;
+  min-height: 100vh;
 }
 
-.image-wrapper {
-  min-height: 560px;
+.hero-wrapper {
+  min-height: 600px;
   position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 100px 10% 60px;
+  gap: 33px;
+
+  .hero-title {
+    color: #fff;
+    font-size: 2.5rem;
+    width: 50%;
+    text-shadow: 0 0 2px rgba(0, 0, 0, 0.9);
+  }
 }
 
 .hero-background {
-  background-image: url("../images/pexels-tobias-bjørkli-2104152.jpg");
+  background-image: url('../images/pexels-tobias-bjørkli-2104152.jpg');
   background-size: cover;
   background-position: center top;
   background-repeat: no-repeat;
@@ -20,4 +32,72 @@
   bottom: 0;
   right: 0;
   background-color: hsl(193, 66%, 37%);
+  z-index: -1;
+}
+
+#form-planner {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  width: 27rem;
+  height: 22rem;
+  padding: 35px 25px;
+  border: none;
+  border-radius: 25px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+
+  input {
+    padding: 15px;
+    margin: 5px 0 10px;
+    border-radius: 25px;
+    outline: none;
+    border: 1px solid hsl(193, 66%, 37%);
+    color: hsl(193, 64%, 24%);
+    font-weight: bold;
+    font-size: 1rem;
+
+    &::placeholder {
+      font-weight: lighter;
+    }
+  }
+
+  label {
+    margin-left: 5px;
+    font-family: sans-serif;
+  }
+}
+
+button {
+  align-self: center;
+  margin: auto;
+  border: none;
+  background: hsl(180, 2%, 8%);
+  color: #fff;
+  border-radius: 25px;
+  font-weight: bold;
+  font-size: 1rem;
+  width: 150px;
+  padding: 15px 0;
+  cursor: pointer;
+  transition: background 0.3s;
+
+  &:hover {
+    background: hsl(193, 25%, 28%);
+  }
+}
+
+//media
+@media (min-width: 1000px) {
+  .hero-wrapper {
+    padding: 100px 15% 60px;
+  }
+
+  .hero-background {
+    background-position: center;
+  }
+
+  #search {
+    width: 180px;
+    padding: 17px 15px;
+  }
 }

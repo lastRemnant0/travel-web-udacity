@@ -22,12 +22,45 @@
       </nav>
     </header>
     <main class="main-container">
-      <section id="search-container">
-        <div class="image-wrapper">
+      <section id="hero-section">
+        <div class="hero-wrapper">
           <div class="hero-background"></div>
+          <h1 class="hero-title">
+            Traveling tends to magnify all human emotions
+          </h1>
+          <form id="form-planner">
+            <label for="city" class="dest-label">Destination</label>
+            <input
+              type="text"
+              id="city"
+              placeholder="Enter city you want to travel to ..."
+              required
+            />
+            <label for="date-depart" class="date-label">Departure Date</label>
+            <input
+              type="date"
+              id="date-depart"
+              name="date-depart"
+              min="2022-12-01"
+              required
+            />
+            <button id="search">Search</button>
+          </form>
         </div>
       </section>
-      <section id="trips-container"></section>
+      <!-- section to show up saved trips by the user -->
+      <section id="trips-container">
+        <div class="trips-cards">
+          <!-- to be removed later-->
+          <h1>NO TRIPS</h1>
+          <article class="card">
+            <!-- To Do -->
+            <!-- background of the city -->
+            <!-- name of the city and days remaning -->
+            <!-- Weather data -->
+          </article>
+        </div>
+      </section>
     </main>
     <footer id="footer-container">
       <p>- Ali Alantaif -</p>
