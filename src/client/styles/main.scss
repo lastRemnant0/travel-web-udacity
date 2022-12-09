@@ -2,39 +2,6 @@
   min-height: 100vh;
 }
 
-.hero-wrapper {
-  min-height: 600px;
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 100px 10% 60px;
-  gap: 33px;
-
-  .hero-title {
-    color: #fff;
-    font-size: 2.5rem;
-    width: 50%;
-    text-shadow: 0 0 2px rgba(0, 0, 0, 0.9);
-  }
-}
-
-.hero-background {
-  background-image: url('../images/pexels-tobias-bjørkli-2104152.jpg');
-  background-size: cover;
-  background-position: center top;
-  background-repeat: no-repeat;
-  width: 100%;
-  margin: 0 auto;
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  background-color: hsl(193, 66%, 37%);
-  z-index: -1;
-}
-
 #form-planner {
   display: flex;
   flex-direction: column;
@@ -86,10 +53,58 @@ button {
   }
 }
 
-//media
+.hero-wrapper {
+  min-height: 600px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 100px 10% 60px;
+  gap: 33px;
+
+  .hero-title {
+    color: #fff;
+    font-size: 2.5rem;
+    width: 50%;
+    text-shadow: 0 0 2px rgba(0, 0, 0, 0.9);
+  }
+}
+
+// background and some shadow for the background
+.shadow-back {
+  background: linear-gradient(280deg, rgb(33, 131, 158), transparent);
+  width: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  z-index: -1;
+  opacity: 0.2;
+}
+
+.hero-background {
+  background-image: url("../images/pexels-tobias-bjørkli-2104152.jpg");
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  width: 100%;
+  margin: 0 auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: hsl(193, 66%, 37%);
+  z-index: -2;
+}
+
+//media queries
+
+// for larg screens
 @media (min-width: 1000px) {
   .hero-wrapper {
     padding: 100px 15% 60px;
+    min-height: 700px;
   }
 
   .hero-background {
@@ -99,5 +114,12 @@ button {
   #search {
     width: 180px;
     padding: 17px 15px;
+  }
+}
+
+// for x larg screen
+@media (min-width: 1250px) {
+  #form-planner {
+    height: 24rem;
   }
 }

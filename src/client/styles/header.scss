@@ -1,7 +1,7 @@
 #header-container {
   position: fixed;
   background: transparent;
-  color: rgb(1, 27, 27);
+  color: #fff;
   z-index: 2;
   display: flex;
   width: 100%;
@@ -9,10 +9,10 @@
   justify-content: space-between;
   padding: 20px 25px;
   h1 {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     text-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
     letter-spacing: 1.5px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   }
 }
 
@@ -23,9 +23,10 @@
 
     li {
       a {
-        color: rgb(1, 27, 27);
-        font-size: 1.2rem;
-        font-family: sa;
+        color: #fff;
+        text-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        font-family: sans-serif;
         &:hover {
           text-decoration: underline;
         }
