@@ -2,6 +2,7 @@
 projectData = {};
 
 // Require Express to run server and routes
+const path = require('path');
 const express = require('express');
 const cors = require('cors');
 // Start up an instance of app
@@ -15,12 +16,13 @@ app.use(express.json());
 app.use(cors());
 // Initialize the main project folder
 app.use(express.static('dist'));
+
+app.get('/', (req, res) => {
+  res.sendFile(path.resolve('dist/index.html'));
+});
+
 // Setup Server
 const PORT = 8081;
 app.listen(8081, () => {
   console.log(`listening on port: ${PORT}`);
-});
-
-app.get('/', (req, res) => {
-  res.sendFile('dist/index.html');
 });
