@@ -5,15 +5,15 @@ https://www.inspirock.com/
 # api urls
 
 geoname:
-http://api.geonames.org/searchJSON?q=dammam&maxRows=10&username=lastremnant0
+http://api.geonames.org/searchJSON?q=dammam&maxRows=1&username=
 
 weatherbit:
 current:
 
-https://api.weatherbit.io/v2.0/current?lat=35.7796&lon=-78.6382&key=80a0ec58c92b45098aff114286d8f044&include=minutely
+https://api.weatherbit.io/v2.0/current?lat=26.43442&lon=50.10326&key=KEY&include=minutely
 
 forecast:
-https://api.weatherbit.io/v2.0/forecast/daily?lat=38.123&lon=-78.543&key=80a0ec58c92b45098aff114286d8f044
+https://api.weatherbit.io/v2.0/forecast/daily?lat=38.123&lon=-78.543&key=KEY
 
 pixbay:
-https://pixabay.com/api/?key=31851275-791aa84cba3487f21e389b8e6&q=paris&image_type=photo&pretty=true&category=buildings
+https://pixabay.com/api/?key=KEY&q=paris&image_type=photo&pretty=true&category=buildings
