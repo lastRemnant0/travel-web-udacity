@@ -17,3 +17,7 @@ https://api.weatherbit.io/v2.0/forecast/daily?lat=38.123&lon=-78.543&key=KEY
 
 pixbay:
 https://pixabay.com/api/?key=KEY&q=paris&image_type=photo&pretty=true&category=buildings
+
+# axios
+
+https://github.com/axios/axios#axios-api

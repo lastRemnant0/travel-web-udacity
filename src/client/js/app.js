@@ -1,4 +1,7 @@
-function showAlert1() {
-  console.log('HI am here');
+async function planHandler() {
+  const planBtn = document.getElementById('search');
+  planBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+  });
 }
-export { showAlert1 };
+export { planHandler };

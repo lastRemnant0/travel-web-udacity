@@ -1,4 +1,4 @@
-import { showAlert1 } from './js/app';
+import { planHandler } from './js/app';
 
 import './styles/reset.scss';
 import './styles/header.scss';
@@ -8,7 +8,7 @@ console.log(process.env.NAME);
 
 window.addEventListener('DOMContentLoaded', (e) => {
   e.preventDefault();
-  showAlert1();
+  planHandler();
 });
 
-export { showAlert1 };
+export { planHandler };
