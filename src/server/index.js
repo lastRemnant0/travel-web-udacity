@@ -1,17 +1,22 @@
 //require dotenv to be able to access enviroment variables
-const dotenv = require("dotenv");
+const dotenv = require('dotenv');
 dotenv.config();
+
+//import the required functions for api calls
+const { getWeather } = require('./getWeatherApi');
+const { getCityImage } = require('./getCityImage');
+const { getCountryImage } = require('./getCountryImage');
 
 // Setup empty JS object to act as endpoint for all routes
 let planData;
 // Require Express to run server and routes
-const path = require("path");
-const express = require("express");
-const cors = require("cors");
-const axios = require("axios");
+const path = require('path');
+const express = require('express');
+const cors = require('cors');
+const axios = require('axios');
 
 // Start up an instance of app
-const PORT = 8081;
+const PORT = 8081 || process.env.PORT;
 const app = express();
 console.log(__dirname);
 /* Middleware*/
@@ -21,41 +26,22 @@ app.use(express.json());
 // Cors for cross origin allowance
 app.use(cors());
 // Initialize the main project folder
-app.use(express.static("dist"));
+app.use(express.static('dist'));
 
-app.get("/", (req, res) => {
-  res.sendFile(path.resolve("dist/index.html"));
+app.get('/', (req, res) => {
+  res.sendFile(path.resolve('dist/index.html'));
 });
 
-//post route to send the fetched data from api to client end point
-app.post("/user", async (req, res) => {
-  function getWeather(lat, log) {
-    return axios.get(
-      `https://api.weatherbit.io/v2.0/forecast/daily?lat=${lat}&lon=${log}&key=${process.env.WEATHERBIT_API_KEY}`
-    );
-  }
-  function getCityImage(city) {
-    return axios.get(
-      `https://pixabay.com/api/?key=${process.env.PIXBAY_API_KEY}&q=${city}&image_type=photo&pretty=true&category=buildings`,
-      {
-        headers: { "Accept-Encoding": "gzip,deflate,compress" },
-      }
-    );
-  }
-  function getCountryImage(country) {
-    return axios.get(
-      `https://pixabay.com/api/?key=${process.env.PIXBAY_API_KEY}&q=${country}&image_type=photo&pretty=true&category=buildings`,
-      {
-        headers: { "Accept-Encoding": "gzip,deflate,compress" },
-      }
-    );
-  }
+//API_KEYS and credentials
 
+//post route to send the fetched data from api to client end point
+app.post('/user', async (req, res) => {
   try {
+    console.log(process.env.GEONAMES_USERNAME);
     const response = await axios.get(
-      `http://api.geonames.org/searchJSON?q=dammam&maxRows=1&username=${process.env.GEONAMES_KEY}`,
+      `${process.env.GEONAMES_URL}q=dammam&maxRows=1&username=${process.env.GEONAMES_USERNAME}`,
       {
-        headers: { "Accept-Encoding": "gzip,deflate,compress" },
+        headers: { 'Accept-Encoding': 'gzip,deflate,compress' },
       }
     );
     planData = {
@@ -69,9 +55,9 @@ app.post("/user", async (req, res) => {
   }
   try {
     await Promise.all([
-      getWeather(planData.lat, planData.log),
-      getCityImage(planData.city),
-      getCountryImage(planData.country),
+      getWeather(planData.lat, planData.log, process.env.WEATHERBIT_API_KEY),
+      getCityImage(planData.city, process.env.PIXBAY_API_KEY),
+      getCountryImage(planData.country, process.env.PIXBAY_API_KEY),
     ]).then(function (results) {
       const weather = results[0];
       const imageCity = results[1];
