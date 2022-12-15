@@ -25,7 +25,7 @@
       <section id="hero-section">
         <div class="hero-wrapper">
           <div class="shadow-back" aria-hidden="true"></div>
-          <div class="hero-background"></div>
+          <div id="hero-background" class="hero-background"></div>
           <h1 class="hero-title">
             Traveling tends to magnify all human emotions
           </h1>
@@ -34,17 +34,13 @@
             <input
               type="text"
               id="city"
+              name="city"
+              pattern="[a-zA-Z]+$ "
               placeholder="Enter city you want to travel to ..."
               required
             />
             <label for="date-depart" class="date-label">Departure Date</label>
-            <input
-              type="date"
-              id="date-depart"
-              name="date-depart"
-              min="2022-12-01"
-              required
-            />
+            <input type="date" id="date-depart" name="date-depart" required />
             <button id="search">Search</button>
           </form>
         </div>
