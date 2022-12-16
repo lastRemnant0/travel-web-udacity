@@ -17,7 +17,7 @@ const { getCountryImage } = require("./getCountryImage");
 let planData;
 
 // Start up an instance of app
-const PORT = 3500 || process.env.PORT;
+const PORT = 8081 || process.env.PORT;
 const app = express();
 console.log(__dirname);
 /* Middleware*/
@@ -122,7 +122,7 @@ app.post("/userPlan", async (req, res) => {
                 countryImage: country_city,
               };
               console.log("COUNTRY IMAGE FETCHED ");
-              res.status(201).send(planData);
+              res.status(200).send(planData);
             });
           } catch (err) {
             console.log(`PIXABAY COUNTRY ERROR: ${err}`);
@@ -133,7 +133,7 @@ app.post("/userPlan", async (req, res) => {
             cityImage: response.data.hits[0].webformatURL,
           };
           console.log("CITY IMAGE FETCHED");
-          res.status(201).send(planData);
+          res.status(200).send(planData);
         }
       }
     );
@@ -141,8 +141,46 @@ app.post("/userPlan", async (req, res) => {
   } catch (err) {
     console.log("PIXABAY API ERROR: " + err);
   }
+
   // res.status(201).send(planData);
 });
+
+// app.get("/pixa", async (req, res) => {
+//   try {
+//     await getCityImage(planData.city, process.env.PIXBAY_API_KEY).then(
+//       async (response) => {
+//         if (response.data.totalHits === 0) {
+//           try {
+//             await getCountryImage(
+//               planData.country,
+//               process.env.PIXBAY_API_KEY
+//             ).then((response) => {
+//               const country_city = response.data.hits[0].webformatURL;
+//               planData = {
+//                 ...planData,
+//                 countryImage: country_city,
+//               };
+//               console.log("COUNTRY IMAGE FETCHED ");
+//               res.status(200).send(planData);
+//             });
+//           } catch (err) {
+//             console.log(`PIXABAY COUNTRY ERROR: ${err}`);
+//           }
+//         } else {
+//           planData = {
+//             ...planData,
+//             cityImage: response.data.hits[0].webformatURL,
+//           };
+//           console.log("CITY IMAGE FETCHED");
+//           res.status(200).send(planData);
+//         }
+//       }
+//     );
+//     //
+//   } catch (err) {
+//     console.log("PIXABAY API ERROR: " + err);
+//   }
+// });
 // Setup Server
 app.listen(PORT, () => {
   console.log(`listening on port: ${PORT}`);

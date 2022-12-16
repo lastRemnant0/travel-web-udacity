@@ -1,14 +1,16 @@
 function planHandler() {
   const dateDepartEl = document.getElementById("date-depart");
-  const cardImageEl = document.querySelector(".trip-backgrund ");
+  const cardImageTempEl = document.querySelector(".trip-backgrund-temp");
+
   //set the min date for departure
   const newDate = new Date();
-
   dateDepartEl.setAttribute(
     "min",
     `${newDate.getFullYear()}-${newDate.getMonth() + 1}-${newDate.getDate()}`
   );
   const planBtn = document.getElementById("search");
+  const cancelBtn = document.getElementById("cancel");
+  //event listener to the click of user for planning
   planBtn.addEventListener("click", (e) => {
     e.preventDefault();
     //get the city value and date from user
@@ -18,14 +20,25 @@ function planHandler() {
     if (cityEl === "" || dateDepartEl.value === "") {
       alert("Please, enter city and date");
     } else {
-      Client.postData("http://localhost:3500/userPlan", { dest: cityEl }).then(
+      Client.postData("http://localhost:8081/userPlan", { dest: cityEl }).then(
         (data) => {
           console.log(data);
           if (!data.cityImage) {
-            cardImageEl.src = data.countryImage;
+            cardImageTempEl.src = data.countryImage;
           } else {
-            cardImageEl.src = data.cityImage;
+            cardImageTempEl.src = data.cityImage;
           }
+          document
+            .querySelector(".plan-result-temp")
+            .classList.toggle("active");
+          //when user cancel the plan clear all fields and return to form
+          cancelBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            document.getElementById("city").value = "";
+            document
+              .querySelector(".plan-result-temp")
+              .classList.remove("active");
+          });
         }
       );
     }

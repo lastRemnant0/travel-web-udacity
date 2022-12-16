@@ -10,15 +10,16 @@
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
   overflow: hidden;
   position: relative;
+  background: #fff;
 }
 
 #form-planner {
   display: flex;
   flex-direction: column;
-  background: #fff;
   width: 100%;
   height: 100%;
   padding: 35px 25px;
+  border: none;
 
   input {
     padding: 15px;
@@ -59,6 +60,43 @@ button {
     background: hsl(193, 25%, 28%);
   }
 }
+
+// overlay shows up after search for a plan before saving the trip
+.plan-result-temp {
+  visibility: hidden;
+  z-index: 10;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: teal;
+  color: #fff;
+  width: 100%;
+  height: 0;
+  transition: height 0.35s ease-in-out;
+  border: none;
+  overflow: hidden;
+  padding: 10px;
+  display: none;
+  flex-direction: column;
+  place-items: center;
+  .trip-backgrund-temp {
+    height: 100%;
+    width: 100%;
+    filter: brightness(0.5);
+    z-index: -3;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
+
+.plan-result-temp.active {
+  visibility: visible;
+  display: flex;
+  height: 100%;
+}
+
+// section 2 styles
 
 .hero-wrapper {
   min-height: 600px;
@@ -187,7 +225,7 @@ button {
 
 // for x larg screen
 @media (min-width: 1250px) {
-  #form-planner {
+  .form-wrapper {
     height: 24rem;
   }
 }
