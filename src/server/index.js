@@ -116,7 +116,7 @@ app.post("/userPlan", async (req, res) => {
               planData.country,
               process.env.PIXBAY_API_KEY
             ).then((response) => {
-              const country_city = response.data.hits[0].largeImageURL;
+              const country_city = response.data.hits[0].webformatURL;
               planData = {
                 ...planData,
                 countryImage: country_city,
@@ -130,7 +130,7 @@ app.post("/userPlan", async (req, res) => {
         } else {
           planData = {
             ...planData,
-            cityImage: response.data.hits[0].largeImageURL,
+            cityImage: response.data.hits[0].webformatURL,
           };
           console.log("CITY IMAGE FETCHED");
           res.status(201).send(planData);

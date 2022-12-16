@@ -1,5 +1,6 @@
 function planHandler() {
   const dateDepartEl = document.getElementById("date-depart");
+  const cardImageEl = document.querySelector(".trip-backgrund ");
   //set the min date for departure
   const newDate = new Date();
 
@@ -20,11 +21,11 @@ function planHandler() {
       Client.postData("http://localhost:3500/userPlan", { dest: cityEl }).then(
         (data) => {
           console.log(data);
-          cardEl.innerHTML = `
-            <p>City: ${data.city}
-            Temp: ${data.temp}
-            </p>
-          `;
+          if (!data.cityImage) {
+            cardImageEl.src = data.countryImage;
+          } else {
+            cardImageEl.src = data.cityImage;
+          }
         }
       );
     }

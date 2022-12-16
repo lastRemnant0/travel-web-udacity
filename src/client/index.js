@@ -9,6 +9,7 @@ import "./styles/footer.scss";
 import backgroundMain from "./images/pexels-tobias-bjørkli-2104152.jpg";
 const heroBgEl = document.getElementById("hero-background");
 heroBgEl.style.backgroundImage = `url(${backgroundMain})`;
+
 console.log(process.env.NAME);
 
 window.addEventListener("DOMContentLoaded", (e) => {

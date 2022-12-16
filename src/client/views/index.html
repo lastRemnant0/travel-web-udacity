@@ -29,36 +29,35 @@
           <h1 class="hero-title">
             Traveling tends to magnify all human emotions
           </h1>
-          <form id="form-planner">
-            <label for="city" class="dest-label">Destination</label>
-            <input
-              type="text"
-              id="city"
-              name="city"
-              pattern="[a-zA-Z]+$ "
-              placeholder="Enter city you want to travel to ..."
-              required
-            />
-            <label for="date-depart" class="date-label">Departure Date</label>
-            <input type="date" id="date-depart" name="date-depart" required />
-            <button id="search">Search</button>
-          </form>
+          <div class="form-wrapper">
+            <form id="form-planner">
+              <label for="city" class="dest-label">Destination</label>
+              <input
+                type="text"
+                id="city"
+                name="city"
+                pattern="[a-zA-Z]+$ "
+                placeholder="Enter city you want to travel to ..."
+                required
+              />
+              <label for="date-depart" class="date-label">Departure Date</label>
+              <input type="date" id="date-depart" name="date-depart" required />
+              <button id="search">Search</button>
+            </form>
+          </div>
         </div>
       </section>
       <!-- section to show up saved trips by the user -->
       <section id="trips-container">
         <h2 class="trips-heading">
-          <span class="border-top" aria-hidden="true">My Trips:</span>
+          <span class="border-top" aria-hidden="true">My T</span>rips:
         </h2>
         <div class="cards-container">
           <!-- to be removed later-->
           <article class="card">
             <!-- To Do -->
             <!-- background of the city -->
-            <img
-              class="trip-backgrund"
-              src="https://pixabay.com/get/gd0f842e2d349d41e113818c0a11502020aae4c9d54f465e3c74b0bad11913a6350dcc9a22077a359432ef315c5162fba5d933843a0551e40180c857babe87882_1280.jpg"
-            />
+            <img class="trip-backgrund" />
             <div class="trip-info">
               <h2 class="trip-hero">Going to Dammam on</h2>
               <p class="trip-to-days">255 Days</p>
