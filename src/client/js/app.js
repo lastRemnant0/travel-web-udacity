@@ -41,31 +41,32 @@ function planHandler() {
     ) {
       alert("Please, enter city and date");
     } else {
-      Client.postData("http://localhost:8081/userPlan", { dest: cityEl }).then(
-        (data) => {
-          console.log(data);
-          if (!data.cityImage) {
-            cardImageTempEl.src = data.countryImage;
-          } else {
-            cardImageTempEl.src = data.cityImage;
-          }
-          setTimeout(
-            () =>
-              document
-                .querySelector(".plan-result-temp")
-                .classList.toggle("active"),
-            1000
-          );
-          //when user cancel the plan clear all fields and return to form
-          cancelBtn.addEventListener("click", (e) => {
-            e.preventDefault();
-            document.getElementById("city").value = "";
+      Client.postData("http://localhost:8081/userPlan", {
+        dest: cityEl,
+        depart_date: dateDepartEl.value,
+      }).then((data) => {
+        console.log(data);
+        if (!data.cityImage) {
+          cardImageTempEl.src = data.countryImage;
+        } else {
+          cardImageTempEl.src = data.cityImage;
+        }
+        setTimeout(
+          () =>
             document
               .querySelector(".plan-result-temp")
-              .classList.remove("active");
-          });
-        }
-      );
+              .classList.toggle("active"),
+          1000
+        );
+        //when user cancel the plan clear all fields and return to form
+        cancelBtn.addEventListener("click", (e) => {
+          e.preventDefault();
+          document.getElementById("city").value = "";
+          document
+            .querySelector(".plan-result-temp")
+            .classList.remove("active");
+        });
+      });
     }
   });
 }

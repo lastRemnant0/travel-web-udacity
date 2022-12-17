@@ -53,6 +53,7 @@ app.post("/userPlan", async (req, res) => {
       city: response.data.geonames[0].toponymName,
       lat: response.data.geonames[0].lat,
       log: response.data.geonames[0].lng,
+      depart_date: req.body.depart_date,
     };
   } catch (err) {
     console.log(err);
@@ -61,14 +62,15 @@ app.post("/userPlan", async (req, res) => {
   try {
     await getWeather(planData.lat, planData.log, process.env.WEATHERBIT_API_KEY)
       .then((response) => {
+        const weather = [...response.data.data];
         planData = {
           ...planData,
           max_temp: response.data.data[0].max_temp,
           temp: response.data.data[0].temp,
           low_temp: response.data.data[0].low_temp,
+          daily_weather: weather,
         };
         console.log("FETCHED DATA FROM WEATHERBIT SUCCESSFULLY");
-        console.log(planData);
         // res.status(200).send(planData);
       })
       .catch((err) => console.log(err));
