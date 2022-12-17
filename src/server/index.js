@@ -115,7 +115,7 @@ app.post("/userPlan", async (req, res) => {
         if (response.data.totalHits === 0) {
           try {
             await getCountryImage(
-              planData.country,
+              planData.country.replace(/\s/g, "+"),
               process.env.PIXBAY_API_KEY
             ).then((response) => {
               const country_city = response.data.hits[0].webformatURL;
