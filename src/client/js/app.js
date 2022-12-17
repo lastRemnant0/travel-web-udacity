@@ -2,6 +2,13 @@ function planHandler() {
   const dateDepartEl = document.getElementById("date-depart");
   const cardImageTempEl = document.querySelector(".trip-backgrund-temp");
 
+  const planBtn = document.getElementById("search");
+  const cancelBtn = document.getElementById("cancel");
+
+  // regex to validate the date
+  const datePattern = /^\d{4}\-\d{2}\-\d{2}$/;
+  // regex to validate the dest
+  const destPattern = /^[a-zA-Z\s]+$/;
   //set the min date for departure
   const currentData = new Date();
   dateDepartEl.setAttribute(
@@ -10,8 +17,7 @@ function planHandler() {
       currentData.getMonth() + 1
     }-${currentData.getDate()}`
   );
-  const planBtn = document.getElementById("search");
-  const cancelBtn = document.getElementById("cancel");
+
   //event listener to the click of user for planning
   planBtn.addEventListener("click", (e) => {
     e.preventDefault();
@@ -27,7 +33,12 @@ function planHandler() {
     const cityEl = document.getElementById("city").value;
     const cardEl = document.querySelector(".card");
     // send user data to the backend
-    if (cityEl === "" || dateDepartEl.value === "") {
+    if (
+      cityEl === "" ||
+      !destPattern.test(cityEl) ||
+      dateDepartEl.value === "" ||
+      !datePattern.test(dateDepartEl.value)
+    ) {
       alert("Please, enter city and date");
     } else {
       Client.postData("http://localhost:8081/userPlan", { dest: cityEl }).then(
@@ -58,4 +69,5 @@ function planHandler() {
     }
   });
 }
+
 export { planHandler };

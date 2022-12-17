@@ -57,40 +57,6 @@ app.post("/userPlan", async (req, res) => {
   } catch (err) {
     console.log(err);
   }
-  // try {
-  //   await Promise.all([
-  //     getWeather(planData.lat, planData.log, process.env.WEATHERBIT_API_KEY),
-  //     getCityImage(planData.city, process.env.PIXBAY_API_KEY),
-  //     getCountryImage(planData.country, process.env.PIXBAY_API_KEY),
-  //   ]).then(function (results) {
-  //     const weather = results[0];
-  //     const imageCity = results[1];
-  //     const imageCountry = results[2];
-  //     planData = {
-  //       ...planData,
-  //       temp: weather.data.data[0].temp,
-  //       max_temp: weather.data.data[0].max_temp,
-  //       low_temp: weather.data.data[0].low_temp,
-  //     };
-
-  //     // if city doesn't have any images will be replaced by its country
-  //     if (imageCity.data.totalHits === 0) {
-  //       planData = {
-  //         ...planData,
-  //         countryImage: imageCountry.data.hits[0].largeImageURL,
-  //       };
-  //     } else {
-  //       planData = {
-  //         ...planData,
-  //         cityImage: imageCity.data.hits[0].largeImageURL,
-  //       };
-  //     }
-  //     res.status(200).send(planData);
-  //   });
-  // } catch (err) {
-  //   console.log(err);
-  // }
-  // another way to get the data from api
 
   try {
     await getWeather(planData.lat, planData.log, process.env.WEATHERBIT_API_KEY)
@@ -101,7 +67,8 @@ app.post("/userPlan", async (req, res) => {
           temp: response.data.data[0].temp,
           low_temp: response.data.data[0].low_temp,
         };
-        console.log("FETCHED DATA FROM WEATHERBIT SUCCESSFUL");
+        console.log("FETCHED DATA FROM WEATHERBIT SUCCESSFULLY");
+        console.log(planData);
         // res.status(200).send(planData);
       })
       .catch((err) => console.log(err));
