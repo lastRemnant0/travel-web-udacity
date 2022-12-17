@@ -7,7 +7,9 @@ const path = require("path");
 const express = require("express");
 const cors = require("cors");
 const axios = require("axios");
-
+// setting fetch to be able to use fetch from server
+const fetch = (...args) =>
+  import("node-fetch").then(({ default: fetch }) => fetch(...args));
 //import the required functions for api calls
 const { getWeather } = require("./getWeatherApi");
 const { getCityImage } = require("./getCityImage");
@@ -79,35 +81,36 @@ app.post("/userPlan", async (req, res) => {
   }
 
   try {
-    await getCityImage(planData.city, process.env.PIXBAY_API_KEY).then(
-      async (response) => {
-        if (response.data.totalHits === 0) {
-          try {
-            await getCountryImage(
-              planData.country.replace(/\s/g, "+"),
-              process.env.PIXBAY_API_KEY
-            ).then((response) => {
-              const country_city = response.data.hits[0].webformatURL;
-              planData = {
-                ...planData,
-                countryImage: country_city,
-              };
-              console.log("COUNTRY IMAGE FETCHED ");
-              res.status(200).send(planData);
-            });
-          } catch (err) {
-            console.log(`PIXABAY COUNTRY ERROR: ${err}`);
-          }
-        } else {
-          planData = {
-            ...planData,
-            cityImage: response.data.hits[0].webformatURL,
-          };
-          console.log("CITY IMAGE FETCHED");
-          res.status(200).send(planData);
+    await getCityImage(
+      planData.city.replace(/\s/g, "+"),
+      process.env.PIXBAY_API_KEY
+    ).then(async (response) => {
+      if (response.data.totalHits === 0) {
+        try {
+          await getCountryImage(
+            planData.country.replace(/\s/g, "+"),
+            process.env.PIXBAY_API_KEY
+          ).then((response) => {
+            const country_city = response.data.hits[0].webformatURL;
+            planData = {
+              ...planData,
+              countryImage: country_city,
+            };
+            console.log("COUNTRY IMAGE FETCHED ");
+            res.status(200).send(planData);
+          });
+        } catch (err) {
+          console.log(`PIXABAY COUNTRY ERROR: ${err}`);
         }
+      } else {
+        planData = {
+          ...planData,
+          cityImage: response.data.hits[0].webformatURL,
+        };
+        console.log("CITY IMAGE FETCHED");
+        res.status(200).send(planData);
       }
-    );
+    });
     //
   } catch (err) {
     console.log("PIXABAY API ERROR: " + err);
@@ -115,6 +118,27 @@ app.post("/userPlan", async (req, res) => {
 
   // res.status(201).send(planData);
 });
+
+// app.get("/pixa", async (req, res) => {
+//   const URL = `${process.env.PIXBAY_URL}key=${
+//     process.env.PIXBAY_API_KEY
+//   }&q=${planData.city.replace(
+//     /\s/g,
+//     "+"
+//   )}&image_type=photo&pretty=true&category=buildings`;
+//   const response = await fetch(URL);
+
+//   try {
+//     const pixaData = await response.json();
+//     planData = {
+//       ...planData,
+//       cityImage: pixaData.data.hits[0].webformatURL,
+//     };
+//     res.send(planData);
+//   } catch (err) {
+//     console.log("FETCH PIXA: " + err);
+//   }
+// });
 
 // app.get("/pixa", async (req, res) => {
 //   try {
