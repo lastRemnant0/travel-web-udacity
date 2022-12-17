@@ -3,10 +3,12 @@ function planHandler() {
   const cardImageTempEl = document.querySelector(".trip-backgrund-temp");
 
   //set the min date for departure
-  const newDate = new Date();
+  const currentData = new Date();
   dateDepartEl.setAttribute(
     "min",
-    `${newDate.getFullYear()}-${newDate.getMonth() + 1}-${newDate.getDate()}`
+    `${currentData.getFullYear()}-${
+      currentData.getMonth() + 1
+    }-${currentData.getDate()}`
   );
   const planBtn = document.getElementById("search");
   const cancelBtn = document.getElementById("cancel");
@@ -14,6 +16,14 @@ function planHandler() {
   planBtn.addEventListener("click", (e) => {
     e.preventDefault();
     //get the city value and date from user
+    console.log("depart date: " + new Date(dateDepartEl.value));
+    console.log("current date: " + currentData);
+    console.log(
+      `DAYS REMAINING TO YOUR NEXT TRIP IS: ${Client.daysRemaining(
+        new Date(dateDepartEl.value),
+        currentData
+      )}`
+    );
     const cityEl = document.getElementById("city").value;
     const cardEl = document.querySelector(".card");
     // send user data to the backend
@@ -28,9 +38,13 @@ function planHandler() {
           } else {
             cardImageTempEl.src = data.cityImage;
           }
-          document
-            .querySelector(".plan-result-temp")
-            .classList.toggle("active");
+          setTimeout(
+            () =>
+              document
+                .querySelector(".plan-result-temp")
+                .classList.toggle("active"),
+            1000
+          );
           //when user cancel the plan clear all fields and return to form
           cancelBtn.addEventListener("click", (e) => {
             e.preventDefault();

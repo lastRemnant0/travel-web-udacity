@@ -39,6 +39,7 @@ app.get("/", (req, res) => {
 app.post("/userPlan", async (req, res) => {
   try {
     const city = req.body.dest;
+    //replacing spaces with + before passing it
     const cleanedCity = city.replace(/\s/g, "+");
     console.log("user dest: " + cleanedCity);
     const response = await axios.get(
@@ -101,6 +102,7 @@ app.post("/userPlan", async (req, res) => {
           low_temp: response.data.data[0].low_temp,
         };
         console.log("FETCHED DATA FROM WEATHERBIT SUCCESSFUL");
+        // res.status(200).send(planData);
       })
       .catch((err) => console.log(err));
   } catch (err) {
