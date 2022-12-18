@@ -62,6 +62,7 @@ function planHandler() {
         cancelBtn.addEventListener("click", (e) => {
           e.preventDefault();
           document.getElementById("city").value = "";
+          dateDepartEl.value = "";
           document
             .querySelector(".plan-result-temp")
             .classList.remove("active");

@@ -4,7 +4,11 @@ function updateTempUI(data) {
   const tripTodayTempra = document.querySelector(".today-temp");
   const tripTodayDesc = document.querySelector(".today-desc");
 
-  tripTempCity.innerText = `${data.city}, ${data.country}`;
+  if (data.city.includes(data.country)) {
+    tripTempCity.innerText = `${data.country}`;
+  } else {
+    tripTempCity.innerText = `${data.city}, ${data.country}`;
+  }
   tripTempRemain.innerText = `${data.depart_date} - ${data.days_to} Days away`;
   tripTodayTempra.innerHTML = `<h5><img src="https://www.weatherbit.io/static/img/icons/${
     data.icon
@@ -17,7 +21,7 @@ function updateTempUI(data) {
     data.low_temp
   )}</h5>
   <p>${data.temp_desc}</p>
-  <h5><span>High:</span> ${data.low_temp(data.max_temp)}</h5>`;
+  <h5><span>High:</span> ${roundTemp(data.max_temp)}</h5>`;
 }
 
 function roundTemp(temp) {

@@ -135,7 +135,7 @@ button {
 
 .today-temp {
   display: flex;
-  gap: 0 10px;
+  gap: 0 15px;
   align-items: center;
   justify-content: center;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -347,8 +347,11 @@ button {
   }
 
   .trip-info-temp {
+    h2 {
+      font-size: calc(1vw + 0.9rem);
+    }
     p {
-      font-size: calc(1vw + 0.3rem);
+      font-size: calc(1vw + 0.25rem);
     }
   }
 }
