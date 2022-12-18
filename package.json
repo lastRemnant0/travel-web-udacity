@@ -2,7 +2,7 @@
   "name": "travel-web-udacity",
   "version": "1.0.0",
   "description": "Udacity last project",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
     "test": "jest",
     "start": "node src/server/index.js",

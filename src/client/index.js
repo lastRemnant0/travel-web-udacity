@@ -1,7 +1,7 @@
 import { planHandler } from "./js/app";
 import { postData } from "./js/postData";
 import { daysRemaining } from "./js/daysRemaining";
-
+import { updateTempUI } from "./js/updateTempUI";
 import "./styles/reset.scss";
 import "./styles/header.scss";
 import "./styles/main.scss";
@@ -18,4 +18,4 @@ window.addEventListener("DOMContentLoaded", (e) => {
   planHandler();
 });
 
-export { planHandler, postData, daysRemaining };
+export { planHandler, postData, daysRemaining, updateTempUI };

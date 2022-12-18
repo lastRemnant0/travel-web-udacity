@@ -26,9 +26,10 @@
         <div class="hero-wrapper">
           <div class="shadow-back" aria-hidden="true"></div>
           <div id="hero-background" class="hero-background"></div>
-          <h1 class="hero-title">
-            Traveling tends to magnify all human emotions
-          </h1>
+          <div class="heading-hero">
+            <h1 class="hero-title">Travel Planner</h1>
+            <p>Traveling tends to magnify all human emotions</p>
+          </div>
           <div class="form-wrapper">
             <form id="form-planner">
               <label for="city" class="dest-label">Destination</label>
@@ -44,15 +45,22 @@
               <button id="search" class="btn">Search</button>
             </form>
             <div class="plan-result-temp">
-              <img
-                class="trip-backgrund-temp"
-                src="https://www.planetware.com/wpimages/2020/03/world-most-visited-cities-paris-france.jpg"
-              />
+              <img class="trip-background-temp" />
               <div class="trip-info-temp">
-                <h2 class="trip-hero-temp">Going to Dammam on</h2>
-                <p class="trip-to-days-temp">255 Days</p>
+                <h2 class="trip-hero-temp">Dammam, Saudi Arabia</h2>
+                <p class="trip-to-days-temp">12/31/2012 - 360 days away</p>
               </div>
-              <button id="cancel" class="btn">Cancel</button>
+              <div class="trip-weather-temp">
+                <div class="today-weather">
+                  <div class="today-temp"></div>
+                  <div class="today-desc"></div>
+                </div>
+                <!-- <div class="daily-weather"></div> -->
+              </div>
+              <div class="plan-temp-saver">
+                <button id="save" class="btn">Save</button>
+                <button id="cancel" class="btn">Cancel</button>
+              </div>
             </div>
           </div>
         </div>
