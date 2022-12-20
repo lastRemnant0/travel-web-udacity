@@ -64,7 +64,7 @@ app.post("/userPlan", async (req, res) => {
         `${process.env.WEATHER_URL}lat=${planData.lat}&lon=${planData.log}&key=${process.env.WEATHERBIT_API_KEY}`
       )
         .then(async (response) => await response.json())
-        .then((data) => {
+        .then(async (data) => {
           const weather = [...data.data];
           planData = {
             ...planData,
@@ -78,35 +78,41 @@ app.post("/userPlan", async (req, res) => {
           console.log("FETCHED DATA FROM WEATHERBIT SUCCESSFULLY");
 
           // call pixabay api to get data from it
-          fetch(
-            `https://pixabay.com/api/?key=${process.env.PIXBAY_API_KEY}&q=${planData.city}&image_type=photo&pretty=true&category=places`
-          )
-            .then(async (response) => await response.json())
-            .then((data) => {
-              if (data.totalHits === 0) {
-                fetch(
-                  `https://pixabay.com/api/?key=${process.env.PIXBAY_API_KEY}&q=${planData.country}&image_type=photo&pretty=true&category=places`
-                )
-                  .then(async (response) => await response.json())
-                  .then((data) => {
-                    planData = {
-                      ...planData,
-                      countryImage: data.hits[0].webformatURL,
-                    };
-                    console.log("COUNTRY IMAGE FETCHED ");
-                    res.send(planData);
-                  })
-                  .catch((err) => console.log("pixa country" + err.message));
-              } else {
-                planData = {
-                  ...planData,
-                  cityImage: data.hits[0].webformatURL,
-                };
-                console.log("CITY IMAGE FETCHED ");
-                res.send(planData);
-              }
-            })
-            .catch((error) => console.log("PIXA ERROR: " + error.message));
+          try {
+            await fetch(
+              `https://pixabay.com/api/?key=${process.env.PIXBAY_API_KEY}&q=${planData.city}&image_type=photo&pretty=true&category=places`
+            )
+              .then(async (response) => await response.json())
+              .then((data) => {
+                if (data.totalHits === 0) {
+                  fetch(
+                    `https://pixabay.com/api/?key=${process.env.PIXBAY_API_KEY}&q=${planData.country}&image_type=photo&pretty=true&category=places`
+                  )
+                    .then(async (response) => await response.json())
+                    .then((data) => {
+                      planData = {
+                        ...planData,
+                        countryImage: data.hits[0].webformatURL,
+                      };
+                      console.log("COUNTRY IMAGE FETCHED ");
+                      res.send(planData);
+                    })
+                    .catch((err) => console.log("pixa country" + err.message));
+                } else {
+                  planData = {
+                    ...planData,
+                    cityImage: data.hits[0].webformatURL,
+                  };
+                  console.log("CITY IMAGE FETCHED ");
+                  res.send(planData);
+                }
+              })
+              .catch((error) => {
+                console.log("PIXA ERROR: " + error.message);
+              });
+          } catch (err) {
+            console.log("ERROR: " + err.message);
+          }
         })
         .catch((err) => console.log("WEATHERBIT ERROR: " + err.message));
     })

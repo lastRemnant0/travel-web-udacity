@@ -37,7 +37,7 @@
                 type="text"
                 id="city"
                 name="city"
-                placeholder="Enter city you want to travel to ..."
+                placeholder="Enter the city you want to travel to ..."
                 required
               />
               <label for="date-depart" class="date-label">Departure Date</label>
@@ -72,33 +72,37 @@
           <span class="border-top" aria-hidden="true">My T</span>rips:
         </h2>
         <div class="cards-container">
+          <h3 class="no-trips-heading">No trips available ...</h3>
           <!-- to be removed later-->
-          <article class="card">
+          <article class="card" data-id="1">
             <!-- To Do -->
             <!-- background of the city -->
-            <img class="trip-backgrund" />
+            <img
+              class="trip-background"
+              src="https://cdn.pixabay.com/photo/2013/11/25/09/47/buildings-217878_960_720.jpg"
+            />
             <div class="trip-info">
-              <h2 class="trip-hero">Going to Dammam on</h2>
-              <p class="trip-to-days">255 Days</p>
+              <h2 class="trip-hero">Dammam, Saudi Arabia</h2>
+              <p class="trip-to-days">2022-12-31, 360 days away</p>
             </div>
             <div class="trip-weather">
               <div class="current-weather">
-                <p>Temp: 33</p>
-                <p>Highest Temp: 35</p>
-                <p>Lowest Temp: 25</p>
+                <h4><img src= "https://www.weatherbit.io/static/img/icons/t01d.png" /></h4>
+                <p>33<span>&#8451</span></p>
+                <h4><img src= "https://www.weatherbit.io/static/img/icons/t01d.png" /></h4>
               </div>
               <div class="forecast-weather">
                 <div class="days-weather">
                   <h4>17/12</h4>
-                  <p>22</p>
+                  <p>22<span>&#8451</span></p>
                 </div>
                 <div class="days-weather">
                   <h4>18/12</h4>
-                  <p>22</p>
+                  <p>22<span>&#8451</span></p>
                 </div>
                 <div class="days-weather">
                   <h4>19/12</h4>
-                  <p>22</p>
+                  <p>22<span>&#8451</span></p>
                 </div>
               </div>
             </div>

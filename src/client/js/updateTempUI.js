@@ -9,7 +9,7 @@ function updateTempUI(data) {
   } else {
     tripTempCity.innerText = `${data.city}, ${data.country}`;
   }
-  tripTempRemain.innerText = `${data.depart_date} - ${data.days_to} Days away`;
+  tripTempRemain.innerText = `${data.depart_date} , ${data.days_to} Days away`;
   tripTodayTempra.innerHTML = `<h5><img src="https://www.weatherbit.io/static/img/icons/${
     data.icon
   }.png"/></h5><h4>${roundTemp(
