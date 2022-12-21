@@ -2,7 +2,7 @@
   position: fixed;
   background: #111;
   color: #fff;
-  z-index: 2;
+  z-index: 10;
   display: flex;
   width: 100%;
   align-items: center;
@@ -30,6 +30,27 @@
         font-family: sans-serif;
         &:hover {
           text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+
+// media queries for header
+@media (max-width: 425px) {
+  #header-container {
+    padding: 20px 15px;
+    h1 {
+      font-size: 1.2rem;
+    }
+  }
+
+  .navbar {
+    ul {
+      gap: 20px;
+      li {
+        a {
+          font-size: 1.1rem;
         }
       }
     }

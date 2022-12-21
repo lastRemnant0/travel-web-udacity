@@ -16,7 +16,7 @@ function updateTempUI(data) {
     data.temp
   )}</h4><h5><img src="https://www.weatherbit.io/static/img/icons/${
     data.icon
-  }.png"/>`;
+  }.png"/></h5>`;
   tripTodayDesc.innerHTML = `<h5><span>Low:</span> ${roundTemp(
     data.low_temp
   )}</h5>

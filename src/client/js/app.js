@@ -3,12 +3,14 @@ function planHandler() {
   let savedTrips = JSON.parse(localStorage.getItem("savedTrips")) || [];
 
   if (savedTrips.length > 0) {
+    document.querySelector(".no-trips-heading").classList.add("active");
     Client.savedTripsUI(savedTrips);
+  } else {
+    document.querySelector(".no-trips-heading").classList.remove("active");
   }
 
   const dateDepartEl = document.getElementById("date-depart");
   const cardImageTempEl = document.querySelector(".trip-background-temp");
-
   const planBtn = document.getElementById("search");
   const cancelBtn = document.getElementById("cancel");
   const saveBtn = document.getElementById("save");
@@ -30,7 +32,7 @@ function planHandler() {
     e.preventDefault();
 
     //get the city value and date from user
-    const cityEl = document.getElementById("city").value;
+    let cityEl = document.getElementById("city").value;
     // send user data to the backend
     if (
       cityEl === "" ||
@@ -59,14 +61,13 @@ function planHandler() {
         // calling our function to update UI
         Client.updateTempUI(data);
         document.querySelector(".plan-result-temp").classList.toggle("active");
+
         //when user cancel the plan clear all fields and return to form
         cancelBtn.addEventListener("click", (e) => {
           e.preventDefault();
-          document.getElementById("city").value = "";
-          dateDepartEl.value = "";
-          document
-            .querySelector(".plan-result-temp")
-            .classList.remove("active");
+          clearInput(cityEl, dateDepartEl);
+
+          window.location.reload();
         });
 
         // to save the data to the local storage and update saved trips UI
@@ -83,12 +84,8 @@ function planHandler() {
           };
           savedTrips.push(savedTrip);
           localStorage.setItem("savedTrips", JSON.stringify(savedTrips));
-
-          document.getElementById("city").value = "";
-          dateDepartEl.value = "";
-          document
-            .querySelector(".plan-result-temp")
-            .classList.remove("active");
+          cityEl = "";
+          clearInput(cityEl, dateDepartEl);
 
           // show up the new trip
           window.location.reload();
@@ -96,6 +93,14 @@ function planHandler() {
       });
     }
   });
+}
+
+//clear input fields
+function clearInput(cityEl, dateDepartEl) {
+  cityEl = "";
+  document.getElementById("city").value = "";
+  dateDepartEl.value = "";
+  document.querySelector(".plan-result-temp").classList.remove("active");
 }
 
 export { planHandler };

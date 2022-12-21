@@ -17,7 +17,7 @@
       <nav class="navbar">
         <ul>
           <li><a href="#" class="link">Home</a></li>
-          <li><a href="#" class="link">Trips</a></li>
+          <li><a href="#trips-container" class="link">Trips</a></li>
         </ul>
       </nav>
     </header>
@@ -59,8 +59,17 @@
                 <!-- <div class="daily-weather"></div> -->
               </div>
               <div class="plan-temp-saver">
-                <button id="save" class="btn">Save</button>
-                <button id="cancel" class="btn">Cancel</button>
+                <button id="save" class="btn" form="form-planner" type="submit">
+                  Save
+                </button>
+                <button
+                  id="cancel"
+                  class="btn"
+                  form="form-planner"
+                  type="reset"
+                >
+                  Cancel
+                </button>
               </div>
             </div>
           </div>
@@ -74,41 +83,6 @@
         <div class="cards-container">
           <h3 class="no-trips-heading">No trips available ...</h3>
           <!-- to be removed later-->
-          <article class="card" data-id="1">
-            <!-- To Do -->
-            <!-- background of the city -->
-            <img
-              class="trip-background"
-              src="https://cdn.pixabay.com/photo/2013/11/25/09/47/buildings-217878_960_720.jpg"
-            />
-            <div class="trip-info">
-              <h2 class="trip-hero">Dammam, Saudi Arabia</h2>
-              <p class="trip-to-days">2022-12-31, 360 days away</p>
-            </div>
-            <div class="trip-weather">
-              <div class="current-weather">
-                <h4><img src= "https://www.weatherbit.io/static/img/icons/t01d.png" /></h4>
-                <p>33<span>&#8451</span></p>
-                <h4><img src= "https://www.weatherbit.io/static/img/icons/t01d.png" /></h4>
-              </div>
-              <div class="forecast-weather">
-                <div class="days-weather">
-                  <h4>17/12</h4>
-                  <p>22<span>&#8451</span></p>
-                </div>
-                <div class="days-weather">
-                  <h4>18/12</h4>
-                  <p>22<span>&#8451</span></p>
-                </div>
-                <div class="days-weather">
-                  <h4>19/12</h4>
-                  <p>22<span>&#8451</span></p>
-                </div>
-              </div>
-            </div>
-            <!-- name of the city and days remaning -->
-            <!-- Weather data -->
-          </article>
         </div>
       </section>
     </main>

@@ -2,6 +2,69 @@
   min-height: 100vh;
 }
 
+// section 1 styles
+
+.hero-wrapper {
+  min-height: 600px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 145px 35px 60px;
+  gap: 33px;
+}
+
+.heading-hero {
+  margin-top: 1rem;
+  width: fit-content;
+  align-self: flex-start;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  .hero-title {
+    color: #fff;
+    font-size: 3rem;
+    font-weight: bold;
+    text-shadow: 0 0 2px rgba(0, 0, 0, 0.9);
+  }
+
+  p {
+    width: 90%;
+    margin-top: 1rem;
+    margin-left: 0.5rem;
+    font-size: 1.5rem;
+    color: #fff;
+    font-weight: lighter;
+  }
+}
+
+// background and some shadow for the background
+.shadow-back {
+  background: linear-gradient(280deg, rgb(33, 131, 158), transparent);
+  width: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  z-index: -1;
+  opacity: 0.2;
+}
+
+.hero-background {
+  // background-image: url("../images/pexels-tobias-bjørkli-2104152.jpg");
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  width: 100%;
+  margin: 0 auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: hsl(193, 66%, 37%);
+  z-index: -2;
+}
+
 .form-wrapper {
   align-self: flex-start;
   width: 29rem;
@@ -77,8 +140,9 @@ button {
   background: hsl(193, 64%, 24%);
   color: #fff;
   width: 100%;
-  height: 0%;
-  transition: height 0.35s ease-in-out;
+  height: 0;
+  transition: all 0.35s ease-in-out;
+  transform: translateY(100%);
   border: none;
   overflow: hidden;
   padding: 10px 0;
@@ -94,6 +158,14 @@ button {
     position: absolute;
     top: 0;
     left: 0;
+  }
+}
+
+.plan-result-temp {
+  &.active {
+    visibility: visible;
+    height: 100%;
+    transform: translateY(0);
   }
 }
 
@@ -171,11 +243,6 @@ button {
   }
 }
 
-.plan-result-temp.active {
-  visibility: visible;
-  height: 100%;
-}
-
 .plan-temp-saver {
   position: absolute;
   bottom: 20px;
@@ -201,69 +268,6 @@ button {
   }
 }
 
-// section 2 styles
-
-.hero-wrapper {
-  min-height: 600px;
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 145px 15% 60px;
-  gap: 33px;
-}
-
-.heading-hero {
-  margin-top: 1rem;
-  width: fit-content;
-  align-self: flex-start;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  .hero-title {
-    color: #fff;
-    font-size: 3rem;
-    font-weight: bold;
-    text-shadow: 0 0 2px rgba(0, 0, 0, 0.9);
-  }
-
-  p {
-    width: 90%;
-    margin-top: 1rem;
-    margin-left: 0.5rem;
-    font-size: 1.5rem;
-    color: #fff;
-    font-weight: lighter;
-  }
-}
-
-// background and some shadow for the background
-.shadow-back {
-  background: linear-gradient(280deg, rgb(33, 131, 158), transparent);
-  width: 100%;
-  position: absolute;
-  top: 0;
-  right: 0;
-  height: 100%;
-  z-index: -1;
-  opacity: 0.2;
-}
-
-.hero-background {
-  // background-image: url("../images/pexels-tobias-bjørkli-2104152.jpg");
-  background-size: cover;
-  background-position: center top;
-  background-repeat: no-repeat;
-  width: 100%;
-  margin: 0 auto;
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  background-color: hsl(193, 66%, 37%);
-  z-index: -2;
-}
-
 //saved trips styles
 
 #trips-container {
@@ -277,7 +281,7 @@ button {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     color: hsl(193, 64%, 24%);
     margin-left: 50px;
-    margin-top: 20px;
+    margin-top: 40px;
     position: relative;
     .border-top {
       width: 50%;
@@ -295,7 +299,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 25px 35px;
+  gap: 45px 35px;
   flex-wrap: wrap;
 }
 
@@ -305,7 +309,7 @@ button {
   font-weight: lighter;
   font-family: "Courier New", Courier, monospace;
 
-  .active {
+  &.active {
     display: none;
   }
 }
@@ -349,8 +353,34 @@ button {
       height: 110%;
     }
 
+    .delete {
+      opacity: 1;
+    }
+
     .current-weather {
       background: rgba(0, 0, 0, 0.4);
+    }
+  }
+
+  .delete {
+    padding: 4px;
+    margin: auto;
+    width: 25px;
+    text-align: center;
+    height: 25px;
+    background: #222;
+    font-size: 12px;
+    position: absolute;
+    right: 10px;
+    color: #fff;
+    top: 10px;
+    border-radius: 50%;
+    box-shadow: 0px 0px 8px rgba(51, 51, 51, 0.5);
+    transition: background 0.3s ease-in-out, opacity 0.2s ease-in-out;
+    opacity: 0;
+
+    &:hover {
+      background: crimson;
     }
   }
 }
@@ -430,6 +460,10 @@ button {
       border-left: 1px solid rgb(227, 227, 227);
     }
 
+    h4 {
+      font-size: calc(1vw + 0.5rem - 0.5vw);
+    }
+
     p {
       position: relative;
       color: hsl(193, 64%, 24%);
@@ -445,10 +479,71 @@ button {
 
 // media queries //
 
+// for tablet and small screens
+@media (max-width: 425px) {
+  .today-desc {
+    font-size: calc(1vw + 0.6rem);
+
+    h5 {
+      span {
+        font-size: calc(1vw + 0.4rem);
+      }
+    }
+  }
+}
+@media (max-width: 700px) {
+  .hero-wrapper {
+    flex-direction: column;
+    justify-content: center;
+
+    .heading-hero {
+      align-self: inherit;
+      text-align: center;
+    }
+
+    .form-wrapper {
+      align-self: inherit;
+      width: 100%;
+      max-width: 29rem;
+      min-width: 18rem;
+    }
+  }
+  .trip-weather {
+    .days-weather {
+      h4,
+      p {
+        font-size: calc(1vw + 0.7rem - 0.4vw);
+      }
+    }
+  }
+  .trip-weather .days-weather p span {
+    font-size: 7px;
+    top: 0px;
+    right: 0;
+  }
+}
+
+@media (max-width: 950px) {
+  .trip-weather {
+    .days-weather {
+      h4,
+      p {
+        font-size: calc(1vw + 0.7rem - 0.4vw);
+      }
+    }
+  }
+  .trip-weather .days-weather p span {
+    font-size: 7px;
+    top: 0px;
+    right: 0;
+  }
+}
+
 // for larg screens
 @media (min-width: 1000px) {
   .hero-wrapper {
     min-height: 700px;
+    padding: 145px 15% 60px;
   }
 
   .hero-background {
@@ -458,6 +553,20 @@ button {
   #search {
     width: 180px;
     padding: 17px 15px;
+  }
+
+  .trip-weather {
+    .days-weather {
+      h4,
+      p {
+        font-size: calc(1vw + 0.7rem - 0.4vw);
+      }
+    }
+  }
+  .trip-weather .days-weather p span {
+    font-size: 8px;
+    top: 0px;
+    right: 2px;
   }
 
   .today-desc {
@@ -516,5 +625,19 @@ button {
     p {
       font-size: calc(1vw + 0.45rem - 0.3vw);
     }
+  }
+
+  .trip-weather {
+    .days-weather {
+      h4,
+      p {
+        font-size: calc(1vw + 0.5rem - 0.5vw);
+      }
+    }
+  }
+  .trip-weather .days-weather p span {
+    font-size: 8px;
+    top: 0px;
+    right: 2px;
   }
 }

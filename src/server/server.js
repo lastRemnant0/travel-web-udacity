@@ -77,13 +77,14 @@ app.post("/userPlan", async (req, res) => {
           };
           console.log("FETCHED DATA FROM WEATHERBIT SUCCESSFULLY");
 
-          // call pixabay api to get data from it
+          // call pixabay api to get data from it and send it to the client
           try {
             await fetch(
               `https://pixabay.com/api/?key=${process.env.PIXBAY_API_KEY}&q=${planData.city}&image_type=photo&pretty=true&category=places`
             )
               .then(async (response) => await response.json())
               .then((data) => {
+                // if no city found then we look for its country image
                 if (data.totalHits === 0) {
                   fetch(
                     `https://pixabay.com/api/?key=${process.env.PIXBAY_API_KEY}&q=${planData.country}&image_type=photo&pretty=true&category=places`
