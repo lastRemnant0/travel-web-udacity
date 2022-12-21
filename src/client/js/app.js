@@ -52,7 +52,6 @@ function planHandler() {
         depart_date: dateDepartEl.value,
         days_to: daysRemain,
       }).then(async (data) => {
-        console.log(data);
         if (!data.cityImage) {
           cardImageTempEl.src = data.countryImage;
         } else {

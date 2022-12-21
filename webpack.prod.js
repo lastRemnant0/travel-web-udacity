@@ -5,6 +5,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const Dotenv = require("dotenv-webpack");
+const WorkboxPlugin = require("workbox-webpack-plugin");
 module.exports = {
   entry: "./src/client/index.js",
   mode: "production",
@@ -42,5 +43,6 @@ module.exports = {
       filename: "[name].css",
     }),
     new Dotenv(),
+    new WorkboxPlugin.GenerateSW(),
   ],
 };
