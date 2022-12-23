@@ -1,6 +1,10 @@
 function savedTripsUI(data) {
   // create all the elements then populate them with the data
-  let trips = data;
+  let trips = data.sort((a, b) => {
+    if (+a.days_to < +b.days_to) {
+      return -1;
+    }
+  });
 
   const fragment = document.createDocumentFragment();
   const cardsContainerEl = document.querySelector(".cards-container");

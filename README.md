@@ -19,3 +19,6 @@
 #### the app is simple enter a city and choose a departure date and click seacrch
 
 #### if everything is installed user shoudl get the data to see before saving the trip
+
+
+##### BY Ali Alantaif
