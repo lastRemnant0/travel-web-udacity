@@ -16,9 +16,11 @@
 
 #### the server should be running on open http://localhost:3000/
 
-#### the app is simple enter a city and choose a departure date and click seacrch
+#### the app is simple enter a city and choose a departure date and click search
 
-#### if everything is installed user shoudl get the data to see before saving the trip
+#### if everything is installed user should get the data to see before saving the trip then you can save or cancel it 
+
+#### saved trips will be store in a local storage and will will sorted by days remaining 
 
 
 ##### BY Ali Alantaif
