@@ -52,7 +52,6 @@ app.post("/userPlan", async (req, res) => {
         depart_date: req.body.depart_date,
         days_to: req.body.days_to,
       };
-      console.log("FETCHED DATA FROM GEONAMES SUCCESSFULLY");
 
       // call weatherbit api to get data from it
       fetch(
@@ -70,7 +69,6 @@ app.post("/userPlan", async (req, res) => {
             temp_desc: data.data[0].weather.description,
             daily_weather: weather,
           };
-          console.log("FETCHED DATA FROM WEATHERBIT SUCCESSFULLY");
 
           // call pixabay api to get data from it and send it to the client
           try {
@@ -90,7 +88,6 @@ app.post("/userPlan", async (req, res) => {
                         ...planData,
                         countryImage: data.hits[0].webformatURL,
                       };
-                      console.log("COUNTRY IMAGE FETCHED ");
                       res.send(planData);
                     })
                     .catch((err) => console.log("pixa country" + err.message));
@@ -99,7 +96,6 @@ app.post("/userPlan", async (req, res) => {
                     ...planData,
                     cityImage: data.hits[0].webformatURL,
                   };
-                  console.log("CITY IMAGE FETCHED ");
                   res.send(planData);
                 }
               })
