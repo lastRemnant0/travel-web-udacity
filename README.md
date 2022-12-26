@@ -10,7 +10,7 @@
 
 #### server is running on port 3000
 
-#### the server should be running on open http://localhost:3000/
+#### the server should be running on localhost:3000/
 
 #### the app is simple enter a city and choose a departure date and click search
 
